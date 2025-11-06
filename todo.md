@@ -1,479 +1,529 @@
-# Travel Marketplace MVP - PayloadCMS Architecture
+# Travel Marketplace - Implementation TODO List
 
-Based on your requirements and the comprehensive spec, here's a streamlined MVP focused on **Flight, Hotels, Bus, Train & Tour Packages** using **PayloadCMS**.
+## **COMPLETED ✅**
 
----
+### Backend Collections (PayloadCMS)
+- ✅ Users Collection (with auth)
+- ✅ Agents Collection (company info, verification, specializations)
+- ✅ Requirements Collection (flight, hotel, bus, train, tour package details)
+- ✅ Quotes Collection (pricing, inclusions, itinerary)
+- ✅ Bookings Collection
+- ✅ Messages Collection
+- ✅ Notifications Collection
+- ✅ Payments Collection
+- ✅ Reviews Collection
+- ✅ Media Collection
+- ✅ Categories & Pages Collections
 
-## **MVP CORE FEATURES (Simplified)**
-
-### **1. USER SIDE - Core Features**
-
-#### **A. User Authentication & Profile**
-- Email/Password registration
-- Google OAuth login
-- User profile with:
-  - Basic info (name, email, phone)
-  - Travel preferences
-  - Booking history
-  - Saved requirements
-
-#### **B. Requirement Submission System (Main Feature)**
-**Users submit travel requirements instead of direct booking:**
-
-**Travel Type Selection:**
-- ✈️ Flight
-- 🏨 Hotel
-- 🚌 Bus
-- 🚂 Train
-- 🎒 Tour Package
-
-**Requirement Form (Dynamic based on type):**
-
-**For Flights:**
-- From → To
-- Departure date
-- Return date (optional)
-- Passengers (Adults/Children/Infants)
-- Class preference (Economy/Business)
-- Budget range
-- Additional notes
-
-**For Hotels:**
-- Destination
-- Check-in / Check-out dates
-- Number of rooms
-- Guests per room
-- Star rating preference (3/4/5 star)
-- Budget per night
-- Meal preference
-- Additional requirements
-
-**For Bus:**
-- From → To
-- Travel date
-- Number of passengers
-- Bus type (AC/Non-AC, Sleeper/Seater)
-- Budget range
-- Departure time preference
-
-**For Train:**
-- From → To
-- Travel date
-- Number of passengers
-- Class preference (Sleeper/3AC/2AC/1AC)
-- Tatkal booking needed (Yes/No)
-- Budget per person
-
-**For Tour Packages:**
-- Destination(s)
-- Duration (X days / Y nights)
-- Travel dates (Fixed/Flexible)
-- Number of travelers
-- Budget per person
-- Travel theme (Honeymoon/Family/Adventure/etc.)
-- Inclusions needed (Flights/Hotels/Meals/Sightseeing)
-- Special requirements
-
-#### **C. Quote Management Dashboard**
-- View all submitted requirements
-- Track status:
-  - 📤 Submitted
-  - 👀 Agents viewing
-  - 💬 Quotes received
-  - ✅ Quote accepted
-  - 💰 Payment pending
-  - ✈️ Confirmed
-  - ❌ Cancelled
-
-**Quote Comparison:**
-- Receive multiple quotes from agents
-- Side-by-side comparison
-- Price, inclusions, agent rating
-- Chat with agent
-- Accept quote
-- Request modifications
-
-#### **D. Communication System**
-- In-app messaging with agents
-- File sharing (images, PDFs)
-- Email notifications
-- SMS alerts
-
-#### **E. Booking & Payment**
-- Accept quote → Proceed to book
-- Enter traveler details
-- Payment options:
-  - Full payment
-  - Partial payment (deposit)
-  - UPI, Cards, Net Banking
-- Payment gateway integration (Razorpay/Stripe)
-- Booking confirmation
-- Download vouchers/tickets
-
-#### **F. My Bookings**
-- Upcoming bookings
-- Past bookings
-- Download invoices
-- Track booking status
-- Contact agent
-- Write reviews
+### Tech Stack Setup
+- ✅ Next.js 15 with App Router
+- ✅ PayloadCMS 3.62.1 configured
+- ✅ SQLite database adapter
+- ✅ Lexical rich text editor
+- ✅ TypeScript configuration
+- ✅ Tailwind CSS + Shadcn/UI
+- ✅ Authentication system
 
 ---
 
-### **2. AGENT SIDE - Core Features**
+## **TODO - PRIORITY ORDER 🎯**
 
-#### **A. Agent Registration & Verification**
-- Business registration form
-- Upload documents:
-  - Company registration
-  - GST certificate
-  - PAN card
-  - Trade license
-- Admin verification (manual approval)
-- Verified badge after approval
+### **PHASE 1: Commission System (CRITICAL)**
 
-#### **B. Agent Dashboard**
-- New requirements feed
-- Filter by:
-  - Service type (Flight/Hotel/Bus/Train/Package)
-  - Date
+**Requirement:** 2% commission from agents, 1% commission from customers
+
+#### Tasks:
+- [ ] Add commission fields to Bookings collection:
+  - `agentCommission` (number, calculated as 2% of booking amount)
+  - `customerCommission` (number, calculated as 1% of booking amount)
+  - `platformCommission` (number, total = agentCommission + customerCommission)
+  - `agentPayout` (number, booking amount - agentCommission)
+  
+- [ ] Create commission calculation hooks:
+  - `beforeChange` hook on Bookings to auto-calculate commissions
+  - Update agent earnings when booking is confirmed
+  
+- [ ] Add commission tracking to Agents collection:
+  - `totalEarnings` (number)
+  - `pendingPayout` (number)
+  - `paidOut` (number)
+  - `commissionRate` (number, default 2%)
+
+- [ ] Create Settings Global for commission configuration:
+  - Agent commission rate (default 2%)
+  - Customer commission rate (default 1%)
+  - Minimum payout threshold
+  - Payout schedule
+
+---
+
+### **PHASE 2: User Frontend Pages**
+
+#### A. Homepage & Navigation
+- [ ] Create landing page (`src/app/(app)/page.tsx`)
+  - Hero section with travel types
+  - How it works section
+  - Featured destinations
+  - Testimonials
+  
+- [ ] Update navigation header
+  - Add "Submit Requirement" CTA button
+  - User profile dropdown
+  - Notifications icon
+
+#### B. Requirement Submission Flow
+- [ ] Create `/requirements/new` page
+  - Service type selection (Flight/Hotel/Bus/Train/Package)
+  - Dynamic form based on service type
+  - Form validation
+  - Submit to PayloadCMS API
+  
+- [ ] Create requirement form components:
+  - `FlightRequirementForm.tsx`
+  - `HotelRequirementForm.tsx`
+  - `BusRequirementForm.tsx`
+  - `TrainRequirementForm.tsx`
+  - `TourPackageRequirementForm.tsx`
+
+#### C. User Dashboard
+- [ ] Create `/dashboard` page
+  - Overview stats (active requirements, quotes received, bookings)
+  - Recent activity feed
+  
+- [ ] Create `/dashboard/requirements` page
+  - List all user requirements
+  - Filter by status, service type, date
+  - View requirement details
+  - Track quote count per requirement
+
+#### D. Quote Management
+- [ ] Create `/dashboard/requirements/[id]` page
+  - View requirement details
+  - List all quotes received
+  - Quote comparison table
+  - Accept/reject quote actions
+  - Chat with agent button
+  
+- [ ] Create quote comparison component
+  - Side-by-side comparison
+  - Highlight best price
+  - Show agent ratings
+  - View detailed itinerary
+
+#### E. Booking & Payment
+- [ ] Create `/booking/[quoteId]` page
+  - Display quote summary
+  - Traveler details form
+  - Payment method selection
+  - Terms & conditions
+  
+- [ ] Integrate PayPal payment gateway
+  - PayPal SDK setup
+  - Payment processing
+  - Success/failure handling
+  - Generate booking confirmation
+  
+- [ ] Create `/booking/success` page
+  - Booking confirmation
+  - Download invoice/voucher
+  - Share booking details
+
+#### F. My Bookings
+- [ ] Create `/dashboard/bookings` page
+  - Upcoming bookings tab
+  - Past bookings tab
+  - Cancelled bookings tab
+  - Filter and search
+  
+- [ ] Create `/dashboard/bookings/[id]` page
+  - Booking details
+  - Traveler information
+  - Payment history
+  - Download vouchers
+  - Contact agent
+  - Write review (after trip)
+
+---
+
+### **PHASE 3: Agent Frontend Pages**
+
+#### A. Agent Registration
+- [ ] Create `/agent/register` page
+  - Company information form
+  - Document upload (GST, PAN, Trade License)
+  - Specialization selection
+  - Submit for verification
+  
+- [ ] Create `/agent/verification-pending` page
+  - Status message
+  - What happens next
+  - Contact admin
+
+#### B. Agent Dashboard
+- [ ] Create `/agent/dashboard` page
+  - Stats cards (pending quotes, active leads, revenue)
+  - Recent requirements feed
+  - Quick actions
+  
+- [ ] Create `/agent/requirements` page
+  - Browse all requirements
+  - Filter by service type, budget, date, destination
+  - Mark as interested
+  - View requirement details
+
+#### C. Quote Builder
+- [ ] Create `/agent/requirements/[id]/quote` page
+  - Requirement summary
+  - Quote form (pricing, inclusions, exclusions)
+  - Itinerary builder (rich text editor)
+  - Upload supporting documents
+  - Set validity period
+  - Submit quote
+  
+- [ ] Create quote templates feature
+  - Save common quote structures
+  - Quick fill from templates
+
+#### D. Agent Bookings
+- [ ] Create `/agent/bookings` page
+  - Active bookings
+  - Completed bookings
+  - Upload vouchers/tickets
+  - Update booking status
+  
+- [ ] Create `/agent/bookings/[id]` page
+  - Booking details
+  - Customer information
+  - Upload documents
+  - Mark as completed
+
+#### E. Earnings & Payouts
+- [ ] Create `/agent/earnings` page
+  - Total earnings overview
+  - Pending payout
+  - Payout history
+  - Commission breakdown
+  - Generate invoice
+  
+- [ ] Create payout request system
+  - Request payout button
+  - Minimum threshold check
+  - Bank details form
+  - Admin approval workflow
+
+---
+
+### **PHASE 4: Communication System**
+
+#### A. In-App Messaging
+- [ ] Create Messages UI component
+  - Chat interface
+  - Real-time updates (polling or websockets)
+  - File attachments
+  - Message notifications
+  
+- [ ] Create `/messages` page
+  - Conversation list
+  - Unread count badges
+  - Search conversations
+  
+- [ ] Create `/messages/[requirementId]` page
+  - Chat thread
+  - Send messages
+  - Upload files
+  - View requirement context
+
+#### B. Notifications System
+- [ ] Create notification dropdown component
+  - Unread notifications
+  - Mark as read
+  - Notification types (quote, booking, message, payment)
+  - Click to navigate
+  
+- [ ] Create `/notifications` page
+  - All notifications list
+  - Filter by type
+  - Mark all as read
+
+#### C. Email Notifications
+- [ ] Setup email service (Nodemailer already in package.json)
+  - Configure SMTP
+  - Email templates
+  
+- [ ] Create email templates:
+  - New requirement submitted
+  - Quote received
+  - Quote accepted
+  - Booking confirmed
+  - Payment received
+  - Review request
+
+---
+
+### **PHASE 5: Admin Panel Enhancements**
+
+#### A. Dashboard Analytics
+- [ ] Create custom admin dashboard
+  - Total users, agents, requirements, bookings
+  - Revenue charts
+  - Conversion rates
+  - Recent activities
+  
+- [ ] Add analytics endpoints
+  - `/api/admin/stats`
+  - `/api/admin/revenue`
+  - `/api/admin/conversion-rates`
+
+#### B. Agent Verification
+- [ ] Create agent verification workflow
+  - Pending agents list
+  - View documents
+  - Approve/reject with reason
+  - Send notification to agent
+  
+- [ ] Add verification status email notifications
+
+#### C. Commission Management
+- [ ] Create commission tracking dashboard
+  - Total platform revenue
+  - Agent payouts pending
+  - Customer commissions collected
+  - Monthly/yearly reports
+  
+- [ ] Create payout management page
+  - Pending payout requests
+  - Approve/reject payouts
+  - Payment processing
+  - Payout history
+
+#### D. Dispute Resolution
+- [ ] Add dispute field to Bookings collection
+  - `disputeStatus` (none, raised, in-review, resolved)
+  - `disputeReason` (textarea)
+  - `disputeResolution` (textarea)
+  
+- [ ] Create dispute management page
+  - View all disputes
+  - Assign to admin
+  - Communicate with parties
+  - Resolve dispute
+
+---
+
+### **PHASE 6: Additional Features**
+
+#### A. Reviews & Ratings
+- [ ] Create review submission form
+  - Star rating (1-5)
+  - Written review
+  - Photo upload
+  - Submit after trip completion
+  
+- [ ] Display reviews on agent profiles
+  - Average rating
+  - Review list
+  - Filter by rating
+  - Verified badge for completed bookings
+
+#### B. Search & Filters
+- [ ] Create advanced search for requirements
+  - Destination search
+  - Date range
   - Budget range
-  - Destination
-  - Status
-- Quick stats:
-  - Pending quotes
-  - Active leads
-  - Conversions
-  - Revenue
+  - Service type
+  
+- [ ] Create agent search/directory
+  - Search by specialization
+  - Filter by rating
+  - Sort by bookings count
 
-#### **C. Requirement Management**
-- View requirement details
-- Accept/Skip requirement
-- Set reminder
-- Add internal notes
+#### C. User Profile
+- [ ] Create `/profile` page
+  - Edit personal information
+  - Change password
+  - Travel preferences
+  - Notification settings
+  
+- [ ] Create `/profile/settings` page
+  - Email preferences
+  - SMS preferences
+  - Privacy settings
 
-#### **D. Quote Builder**
-**Simple Quote Creation:**
-
-For each service type, agent can:
-- Enter pricing
-- Add inclusions/exclusions
-- Upload supporting documents
-- Set validity period
-- Add terms & conditions
-- Submit quote to user
-
-**Quote Actions:**
-- Edit draft quotes
-- Track quote status (Sent/Viewed/Accepted/Rejected)
-- Revise quotes based on user feedback
-- Send follow-up messages
-
-#### **E. Booking Management**
-Once quote accepted:
-- View booking details
-- Upload vouchers/tickets
-- Update booking status
-- Handle modifications
-- Process refunds (if needed)
-- Mark as completed
-
-#### **F. Communication Hub**
-- Chat with customers
-- Quick reply templates
-- File uploads
-- Email/SMS integration
-
-#### **G. Payment & Earnings**
-- View earnings
-- Payment history
-- Pending payouts
-- Commission structure
-- Generate invoices
+#### D. Mobile Responsiveness
+- [ ] Ensure all pages are mobile-friendly
+  - Responsive layouts
+  - Touch-friendly buttons
+  - Mobile navigation menu
+  - Test on various devices
 
 ---
 
-### **3. ADMIN PANEL - Core Features**
+### **PHASE 7: Amadeus API Integration (Flight & Travel Data)**
 
-#### **A. Dashboard**
-- Total users
-- Total agents
-- Total requirements submitted
-- Total bookings
-- Revenue metrics
-- Recent activities
+**Purpose:** Integrate real-time flight search, hotel availability, and travel data from Amadeus API
 
-#### **B. User Management**
-- View all users
-- User details & activity
-- Block/Unblock users
-- Support tickets
+#### A. Amadeus API Setup
+- [ ] Register for Amadeus for Developers account
+- [ ] Get API credentials (Client ID & Secret)
+- [ ] Setup OAuth authentication flow
+- [ ] Create API utility functions for token management
+- [ ] Add environment variables for Amadeus credentials
 
-#### **C. Agent Management**
-- Pending verifications
-- Approve/Reject agents
-- View agent performance
-- Manage agent status
-- Handle agent disputes
+#### B. Flight Search Integration
+- [ ] Implement Flight Offers Search API
+  - Search flights by origin, destination, dates
+  - Filter by cabin class, airlines, stops
+  - Get real-time pricing
+  
+- [ ] Implement Flight Offers Price API
+  - Confirm pricing before booking
+  - Get detailed fare rules
+  
+- [ ] Create flight search UI
+  - Search form with autocomplete for airports
+  - Display search results with filters
+  - Show flight details (duration, stops, baggage)
+  - Price comparison
 
-#### **D. Requirement Monitoring**
-- View all requirements
-- Track fulfillment rate
-- Unassigned requirements
-- Send to more agents
+#### C. Hotel Search Integration
+- [ ] Implement Hotel Search API
+  - Search hotels by city/location
+  - Filter by star rating, amenities, price
+  - Get availability and pricing
+  
+- [ ] Implement Hotel Booking API
+  - Get detailed hotel information
+  - Room availability
+  - Booking confirmation
+  
+- [ ] Create hotel search UI
+  - Location search with map integration
+  - Display hotel cards with images
+  - Filter and sort options
+  - Hotel details page
 
-#### **E. Booking Management**
-- View all bookings
-- Booking details
-- Resolve disputes
-- Refund management
-- Generate reports
+#### D. Additional Amadeus APIs
+- [ ] Airport & City Search API
+  - Autocomplete for flight search
+  - Get airport codes and names
+  
+- [ ] Flight Inspiration Search
+  - Suggest destinations based on budget
+  - Popular routes
+  
+- [ ] Hotel Ratings API
+  - Get sentiment analysis and ratings
+  - Display reviews
+  
+- [ ] Points of Interest API
+  - Suggest attractions near hotels
+  - Tour recommendations
 
-#### **F. Payment Management**
-- Transaction history
-- Commission tracking
-- Agent payouts
-- Refund processing
-- Financial reports
+#### E. Agent Quote Enhancement
+- [ ] Allow agents to search Amadeus data when creating quotes
+- [ ] Pre-fill quote forms with Amadeus pricing
+- [ ] Add markup/commission on top of Amadeus prices
+- [ ] Compare agent quotes with Amadeus live prices
 
-#### **G. Content Management**
-- Homepage banners
-- Featured destinations
-- Blog/guides
-- FAQs
-- Notifications
-
-#### **H. System Settings**
-- Commission rates
-- Payment gateway config
-- Email/SMS templates
-- Platform fees
-- Service categories
-
----
-
-## **PAYLOADCMS COLLECTIONS STRUCTURE**
-
-### **Collections to Create:**
-
-```javascript
-// 1. Users Collection
-{
-  slug: 'users',
-  auth: true,
-  fields: [
-    { name: 'name', type: 'text', required: true },
-    { name: 'phone', type: 'text' },
-    { name: 'role', type: 'select', options: ['user', 'agent', 'admin'] },
-    { name: 'travelPreferences', type: 'group', fields: [...] },
-    { name: 'savedRequirements', type: 'relationship', relationTo: 'requirements' }
-  ]
-}
-
-// 2. Agents Collection
-{
-  slug: 'agents',
-  fields: [
-    { name: 'user', type: 'relationship', relationTo: 'users' },
-    { name: 'companyName', type: 'text', required: true },
-    { name: 'gstNumber', type: 'text' },
-    { name: 'documents', type: 'upload', relationTo: 'media' },
-    { name: 'verificationStatus', type: 'select', 
-      options: ['pending', 'verified', 'rejected'] },
-    { name: 'specializations', type: 'array', fields: [...] },
-    { name: 'rating', type: 'number' },
-    { name: 'totalBookings', type: 'number' }
-  ]
-}
-
-// 3. Requirements Collection (Main)
-{
-  slug: 'requirements',
-  fields: [
-    { name: 'user', type: 'relationship', relationTo: 'users' },
-    { name: 'serviceType', type: 'select', 
-      options: ['flight', 'hotel', 'bus', 'train', 'tour-package'] },
-    { name: 'status', type: 'select',
-      options: ['submitted', 'in-review', 'quoted', 'accepted', 'booked', 'completed', 'cancelled'] },
-    
-    // Flight specific fields
-    { name: 'flightDetails', type: 'group', 
-      admin: { condition: (data) => data.serviceType === 'flight' },
-      fields: [
-        { name: 'from', type: 'text' },
-        { name: 'to', type: 'text' },
-        { name: 'departureDate', type: 'date' },
-        { name: 'returnDate', type: 'date' },
-        { name: 'passengers', type: 'group', fields: [...] },
-        { name: 'class', type: 'select' },
-        { name: 'budget', type: 'number' }
-      ]
-    },
-    
-    // Hotel specific fields
-    { name: 'hotelDetails', type: 'group',
-      admin: { condition: (data) => data.serviceType === 'hotel' },
-      fields: [...]
-    },
-    
-    // Similar for bus, train, tour-package
-    
-    { name: 'additionalNotes', type: 'textarea' },
-    { name: 'quotes', type: 'relationship', relationTo: 'quotes', hasMany: true }
-  ]
-}
-
-// 4. Quotes Collection
-{
-  slug: 'quotes',
-  fields: [
-    { name: 'requirement', type: 'relationship', relationTo: 'requirements' },
-    { name: 'agent', type: 'relationship', relationTo: 'agents' },
-    { name: 'pricing', type: 'group', fields: [
-      { name: 'basePrice', type: 'number' },
-      { name: 'taxes', type: 'number' },
-      { name: 'total', type: 'number' }
-    ]},
-    { name: 'inclusions', type: 'array', of: 'text' },
-    { name: 'exclusions', type: 'array', of: 'text' },
-    { name: 'validity', type: 'date' },
-    { name: 'termsAndConditions', type: 'richText' },
-    { name: 'documents', type: 'upload', relationTo: 'media', hasMany: true },
-    { name: 'status', type: 'select', 
-      options: ['draft', 'sent', 'viewed', 'accepted', 'rejected', 'expired'] },
-    { name: 'detailedItinerary', type: 'richText' }
-  ]
-}
-
-// 5. Bookings Collection
-{
-  slug: 'bookings',
-  fields: [
-    { name: 'requirement', type: 'relationship', relationTo: 'requirements' },
-    { name: 'quote', type: 'relationship', relationTo: 'quotes' },
-    { name: 'user', type: 'relationship', relationTo: 'users' },
-    { name: 'agent', type: 'relationship', relationTo: 'agents' },
-    { name: 'bookingId', type: 'text', unique: true },
-    { name: 'travelerDetails', type: 'array', fields: [...] },
-    { name: 'paymentStatus', type: 'select',
-      options: ['pending', 'partial', 'paid', 'refunded'] },
-    { name: 'bookingStatus', type: 'select',
-      options: ['confirmed', 'pending', 'cancelled', 'completed'] },
-    { name: 'totalAmount', type: 'number' },
-    { name: 'paidAmount', type: 'number' },
-    { name: 'vouchers', type: 'upload', relationTo: 'media', hasMany: true },
-    { name: 'bookingDate', type: 'date' },
-    { name: 'travelDate', type: 'date' }
-  ]
-}
-
-// 6. Messages Collection
-{
-  slug: 'messages',
-  fields: [
-    { name: 'requirement', type: 'relationship', relationTo: 'requirements' },
-    { name: 'sender', type: 'relationship', relationTo: 'users' },
-    { name: 'receiver', type: 'relationship', relationTo: 'users' },
-    { name: 'message', type: 'textarea' },
-    { name: 'attachments', type: 'upload', relationTo: 'media', hasMany: true },
-    { name: 'read', type: 'checkbox', defaultValue: false }
-  ]
-}
-
-// 7. Payments Collection
-{
-  slug: 'payments',
-  fields: [
-    { name: 'booking', type: 'relationship', relationTo: 'bookings' },
-    { name: 'user', type: 'relationship', relationTo: 'users' },
-    { name: 'amount', type: 'number' },
-    { name: 'paymentMethod', type: 'select',
-      options: ['card', 'upi', 'netbanking', 'wallet'] },
-    { name: 'paymentStatus', type: 'select',
-      options: ['pending', 'success', 'failed', 'refunded'] },
-    { name: 'transactionId', type: 'text' },
-    { name: 'paymentGateway', type: 'text' },
-    { name: 'paymentDate', type: 'date' }
-  ]
-}
-
-// 8. Reviews Collection
-{
-  slug: 'reviews',
-  fields: [
-    { name: 'booking', type: 'relationship', relationTo: 'bookings' },
-    { name: 'user', type: 'relationship', relationTo: 'users' },
-    { name: 'agent', type: 'relationship', relationTo: 'agents' },
-    { name: 'rating', type: 'number', min: 1, max: 5 },
-    { name: 'review', type: 'textarea' },
-    { name: 'photos', type: 'upload', relationTo: 'media', hasMany: true },
-    { name: 'verified', type: 'checkbox' }
-  ]
-}
-
-// 9. Notifications Collection
-{
-  slug: 'notifications',
-  fields: [
-    { name: 'user', type: 'relationship', relationTo: 'users' },
-    { name: 'title', type: 'text' },
-    { name: 'message', type: 'textarea' },
-    { name: 'type', type: 'select',
-      options: ['requirement', 'quote', 'booking', 'payment', 'message'] },
-    { name: 'read', type: 'checkbox', defaultValue: false },
-    { name: 'link', type: 'text' }
-  ]
-}
-
-// 10. Media Collection (built-in, just configure)
-{
-  slug: 'media',
-  upload: {
-    staticURL: '/media',
-    staticDir: 'media',
-    mimeTypes: ['image/*', 'application/pdf'],
-  }
-}
-```
+#### F. Caching & Performance
+- [ ] Implement caching for Amadeus API responses
+- [ ] Rate limiting to avoid API quota issues
+- [ ] Background jobs for price updates
+- [ ] Webhook integration for booking updates
 
 ---
 
-## **TECH STACK**
+### **PHASE 8: Testing & Deployment**
 
-### **Backend:**
-- **PayloadCMS** (Node.js + sqlite/postgreysql , for local sqlite)
-- **Database:** MongoDB
-- **Authentication:** Payload's built-in auth
-- **File Storage:** Local
-- **Payment Gateway:** paypal
+#### A. Testing
+- [ ] Write integration tests (Vitest already configured)
+  - API endpoint tests
+  - Collection CRUD tests
+  - Commission calculation tests
+  
+- [ ] Write E2E tests (Playwright already configured)
+  - User registration flow
+  - Requirement submission flow
+  - Quote acceptance flow
+  - Payment flow
+  - Agent quote creation flow
 
-### **Frontend:**
-- **Next.js 14+** (App Router)
-- **TypeScript**
-- **Tailwind CSS**
-- **Shadcn/UI** components
-- **React Query** for data fetching
-- **Zustand** for state management
+#### B. Security
+- [ ] Implement rate limiting
+- [ ] Add CSRF protection
+- [ ] Sanitize user inputs
+- [ ] Secure file uploads
+- [ ] Environment variable validation
 
-### **Additional Services:**
-- **Email:** SendGrid/Resend
-- **SMS:** Twilio/MSG91
-- **Real-time:** Socket.io (for chat)
-- **Push Notifications:** Firebase Cloud Messaging
+#### C. Performance
+- [ ] Optimize images
+- [ ] Add caching strategy
+- [ ] Database indexing
+- [ ] Code splitting
+- [ ] Lazy loading
+
+#### D. Deployment
+- [ ] Setup production database (PostgreSQL recommended)
+- [ ] Configure environment variables
+- [ ] Setup CI/CD pipeline
+- [ ] Deploy to hosting (Vercel/Railway/AWS)
+- [ ] Setup domain and SSL
+- [ ] Configure email service
+- [ ] Setup payment gateway (production keys)
 
 ---
 
-## **MVP FLOW SUMMARY**
+## **IMMEDIATE NEXT STEPS (Start Here)**
 
-1. **User signs up** → Browses or submits requirement
-2. **Requirement created** → Matched with relevant agents
-3. **Agents receive notification** → View requirement → Create quote
-4. **User receives quotes** → Compare → Chat with agents → Accept quote
-5. **Payment** → Booking confirmed
-6. **Agent uploads vouchers/tickets** → User receives confirmation
-7. **Trip completed** → User writes review
-8. **Admin monitors** → Ensures smooth operation → Handles disputes
+1. **Add Commission System** (PHASE 1)
+   - Update Bookings collection with commission fields
+   - Create commission calculation hooks
+   - Add Settings global for commission rates
+
+2. **Create User Requirement Submission** (PHASE 2B)
+   - Build `/requirements/new` page
+   - Create service-specific forms
+   - Connect to PayloadCMS API
+
+3. **Create User Dashboard** (PHASE 2C)
+   - Build `/dashboard` page
+   - Show requirements list
+   - Display quotes received
+
+4. **Create Agent Dashboard** (PHASE 3B)
+   - Build `/agent/dashboard` page
+   - Show requirements feed
+   - Create quote builder
+
+5. **Implement Payment Integration** (PHASE 2E)
+   - Setup PayPal SDK
+   - Create payment flow
+   - Handle success/failure
+
+6. **Amadeus API Integration** (PHASE 7 - Later)
+   - Real-time flight search and pricing
+   - Hotel availability and booking
+   - Travel data enrichment
 
 ---
 
-This MVP structure is **PayloadCMS-friendly**, scalable, and focuses on your core requirement submission flow. Would you like me to elaborate on any specific section or provide code examples for payload config?
+## **TECH STACK (Current)**
+
+- **Backend:** PayloadCMS 3.62.1 + SQLite
+- **Frontend:** Next.js 15 + TypeScript
+- **Styling:** Tailwind CSS + Shadcn/UI
+- **Auth:** Payload built-in auth
+- **Payment:** PayPal (to be integrated)
+- **Email:** Nodemailer (configured, needs templates)
+
+---
+
+## **NOTES**
+
+- All backend collections are created and configured ✅
+- Focus now is on building frontend user interfaces
+- Commission system is critical for business model
+- Payment integration is essential for MVP
+- Start with user flow, then agent flow, then admin enhancements
+- Amadeus API integration will provide real-time flight/hotel data in later phase
+- Amadeus offers 2,000 free API calls per month for testing

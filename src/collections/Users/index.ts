@@ -2,8 +2,8 @@ import type { CollectionConfig } from 'payload'
 
 import { adminOnly } from '@/access/adminOnly'
 import { adminOnlyFieldAccess } from '@/access/adminOnlyFieldAccess'
-import { publicAccess } from '@/access/publicAccess'
 import { adminOrSelf } from '@/access/adminOrSelf'
+import { publicAccess } from '@/access/publicAccess'
 import { checkRole } from '@/access/utilities'
 
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
@@ -52,6 +52,10 @@ export const Users: CollectionConfig = {
           label: 'customer',
           value: 'customer',
         },
+        {
+          label: 'agent',
+          value: 'agent',
+        },
       ],
     },
     {
@@ -83,6 +87,40 @@ export const Users: CollectionConfig = {
         allowCreate: false,
         defaultColumns: ['id'],
       },
+    },
+    {
+      name: 'phone',
+      type: 'text',
+    },
+    {
+      name: 'travelPreferences',
+      type: 'group',
+      fields: [
+        {
+          name: 'preferredDestinations',
+          type: 'text',
+        },
+        {
+          name: 'budgetRange',
+          type: 'select',
+          options: [
+            { label: 'Budget', value: 'budget' },
+            { label: 'Mid-Range', value: 'mid-range' },
+            { label: 'Luxury', value: 'luxury' },
+          ],
+        },
+        {
+          name: 'travelStyle',
+          type: 'select',
+          hasMany: true,
+          options: [
+            { label: 'Adventure', value: 'adventure' },
+            { label: 'Relaxation', value: 'relaxation' },
+            { label: 'Cultural', value: 'cultural' },
+            { label: 'Family', value: 'family' },
+          ],
+        },
+      ],
     },
   ],
 }

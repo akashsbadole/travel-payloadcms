@@ -76,6 +76,14 @@ export interface Config {
     pages: Page;
     categories: Category;
     media: Media;
+    requirements: Requirement;
+    agents: Agent;
+    quotes: Quote;
+    bookings: Booking;
+    reviews: Review;
+    notifications: Notification;
+    messages: Message;
+    payments: Payment;
     forms: Form;
     'form-submissions': FormSubmission;
     addresses: Address;
@@ -109,6 +117,14 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    requirements: RequirementsSelect<false> | RequirementsSelect<true>;
+    agents: AgentsSelect<false> | AgentsSelect<true>;
+    quotes: QuotesSelect<false> | QuotesSelect<true>;
+    bookings: BookingsSelect<false> | BookingsSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    notifications: NotificationsSelect<false> | NotificationsSelect<true>;
+    messages: MessagesSelect<false> | MessagesSelect<true>;
+    payments: PaymentsSelect<false> | PaymentsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     addresses: AddressesSelect<false> | AddressesSelect<true>;
@@ -185,7 +201,7 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   name?: string | null;
-  roles?: ('admin' | 'customer')[] | null;
+  roles?: ('admin' | 'customer' | 'agent')[] | null;
   orders?: {
     docs?: (number | Order)[];
     hasNextPage?: boolean;
@@ -200,6 +216,12 @@ export interface User {
     docs?: (number | Address)[];
     hasNextPage?: boolean;
     totalDocs?: number;
+  };
+  phone?: string | null;
+  travelPreferences?: {
+    preferredDestinations?: string | null;
+    budgetRange?: ('budget' | 'mid-range' | 'luxury') | null;
+    travelStyle?: ('adventure' | 'relaxation' | 'cultural' | 'family')[] | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -1017,6 +1039,249 @@ export interface Address {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "requirements".
+ */
+export interface Requirement {
+  id: number;
+  user: number | User;
+  serviceType: 'flight' | 'hotel' | 'bus' | 'train' | 'tour-package';
+  status: 'submitted' | 'in-review' | 'quoted' | 'accepted' | 'booked' | 'completed' | 'cancelled';
+  flightDetails?: {
+    from: string;
+    to: string;
+    departureDate: string;
+    returnDate?: string | null;
+    passengers?: {
+      adults?: number | null;
+      children?: number | null;
+      infants?: number | null;
+    };
+    class?: ('economy' | 'business' | 'first') | null;
+    budget?: number | null;
+  };
+  hotelDetails?: {
+    destination: string;
+    checkInDate: string;
+    checkOutDate: string;
+    numberOfRooms?: number | null;
+    guestsPerRoom?: number | null;
+    starRating?: ('3' | '4' | '5') | null;
+    budgetPerNight?: number | null;
+    mealPreference?: ('room-only' | 'breakfast' | 'half-board' | 'full-board') | null;
+  };
+  busDetails?: {
+    from: string;
+    to: string;
+    travelDate: string;
+    numberOfPassengers?: number | null;
+    busType?: ('ac-seater' | 'ac-sleeper' | 'non-ac-seater' | 'non-ac-sleeper') | null;
+    budget?: number | null;
+    departureTimePreference?: ('morning' | 'afternoon' | 'evening' | 'night') | null;
+  };
+  trainDetails?: {
+    from: string;
+    to: string;
+    travelDate: string;
+    numberOfPassengers?: number | null;
+    class?: ('sleeper' | '3ac' | '2ac' | '1ac') | null;
+    tatkalBooking?: boolean | null;
+    budgetPerPerson?: number | null;
+  };
+  tourPackageDetails?: {
+    destinations: string;
+    duration: string;
+    travelDates: string;
+    flexibleDates?: boolean | null;
+    numberOfTravelers?: number | null;
+    budgetPerPerson?: number | null;
+    travelTheme?: ('honeymoon' | 'family' | 'adventure' | 'religious' | 'beach' | 'hill-station') | null;
+    inclusions?: ('flights' | 'hotels' | 'meals' | 'sightseeing' | 'transport')[] | null;
+  };
+  additionalNotes?: string | null;
+  quotes?: (number | Quote)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote {
+  id: number;
+  requirement: number | Requirement;
+  agent: number | Agent;
+  pricing: {
+    basePrice: number;
+    taxes?: number | null;
+    total: number;
+  };
+  inclusions?:
+    | {
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  exclusions?:
+    | {
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  validity: string;
+  termsAndConditions?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  documents?: (number | Media)[] | null;
+  status: 'draft' | 'sent' | 'viewed' | 'accepted' | 'rejected' | 'expired';
+  detailedItinerary?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agents".
+ */
+export interface Agent {
+  id: number;
+  user: number | User;
+  companyName: string;
+  gstNumber?: string | null;
+  panCard?: string | null;
+  tradeLicense?: string | null;
+  documents?: (number | Media)[] | null;
+  verificationStatus: 'pending' | 'verified' | 'rejected';
+  specializations?: ('flight' | 'hotel' | 'bus' | 'train' | 'tour-package')[] | null;
+  rating?: number | null;
+  totalBookings?: number | null;
+  phone?: string | null;
+  address?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bookings".
+ */
+export interface Booking {
+  id: number;
+  requirement: number | Requirement;
+  quote: number | Quote;
+  user: number | User;
+  agent: number | Agent;
+  bookingId: string;
+  travelerDetails?:
+    | {
+        firstName: string;
+        lastName: string;
+        age: number;
+        gender?: ('male' | 'female' | 'other') | null;
+        passportNumber?: string | null;
+        email?: string | null;
+        phone?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  paymentStatus: 'pending' | 'partial' | 'paid' | 'refunded';
+  bookingStatus: 'confirmed' | 'pending' | 'cancelled' | 'completed';
+  totalAmount: number;
+  paidAmount?: number | null;
+  vouchers?: (number | Media)[] | null;
+  bookingDate: string;
+  travelDate: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: number;
+  booking: number | Booking;
+  user: number | User;
+  agent: number | Agent;
+  rating: number;
+  review: string;
+  photos?: (number | Media)[] | null;
+  verified?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notifications".
+ */
+export interface Notification {
+  id: number;
+  user: number | User;
+  title: string;
+  message: string;
+  type: 'requirement' | 'quote' | 'booking' | 'payment' | 'message';
+  read?: boolean | null;
+  link?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messages".
+ */
+export interface Message {
+  id: number;
+  requirement: number | Requirement;
+  sender: number | User;
+  receiver: number | User;
+  message: string;
+  attachments?: (number | Media)[] | null;
+  read?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payments".
+ */
+export interface Payment {
+  id: number;
+  booking: number | Booking;
+  user: number | User;
+  amount: number;
+  paymentMethod: 'card' | 'upi' | 'netbanking' | 'wallet' | 'paypal';
+  paymentStatus: 'pending' | 'success' | 'failed' | 'refunded';
+  transactionId: string;
+  paymentGateway?: string | null;
+  paymentDate: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
@@ -1071,6 +1336,38 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'requirements';
+        value: number | Requirement;
+      } | null)
+    | ({
+        relationTo: 'agents';
+        value: number | Agent;
+      } | null)
+    | ({
+        relationTo: 'quotes';
+        value: number | Quote;
+      } | null)
+    | ({
+        relationTo: 'bookings';
+        value: number | Booking;
+      } | null)
+    | ({
+        relationTo: 'reviews';
+        value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'notifications';
+        value: number | Notification;
+      } | null)
+    | ({
+        relationTo: 'messages';
+        value: number | Message;
+      } | null)
+    | ({
+        relationTo: 'payments';
+        value: number | Payment;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1164,6 +1461,14 @@ export interface UsersSelect<T extends boolean = true> {
   orders?: T;
   cart?: T;
   addresses?: T;
+  phone?: T;
+  travelPreferences?:
+    | T
+    | {
+        preferredDestinations?: T;
+        budgetRange?: T;
+        travelStyle?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1382,6 +1687,227 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "requirements_select".
+ */
+export interface RequirementsSelect<T extends boolean = true> {
+  user?: T;
+  serviceType?: T;
+  status?: T;
+  flightDetails?:
+    | T
+    | {
+        from?: T;
+        to?: T;
+        departureDate?: T;
+        returnDate?: T;
+        passengers?:
+          | T
+          | {
+              adults?: T;
+              children?: T;
+              infants?: T;
+            };
+        class?: T;
+        budget?: T;
+      };
+  hotelDetails?:
+    | T
+    | {
+        destination?: T;
+        checkInDate?: T;
+        checkOutDate?: T;
+        numberOfRooms?: T;
+        guestsPerRoom?: T;
+        starRating?: T;
+        budgetPerNight?: T;
+        mealPreference?: T;
+      };
+  busDetails?:
+    | T
+    | {
+        from?: T;
+        to?: T;
+        travelDate?: T;
+        numberOfPassengers?: T;
+        busType?: T;
+        budget?: T;
+        departureTimePreference?: T;
+      };
+  trainDetails?:
+    | T
+    | {
+        from?: T;
+        to?: T;
+        travelDate?: T;
+        numberOfPassengers?: T;
+        class?: T;
+        tatkalBooking?: T;
+        budgetPerPerson?: T;
+      };
+  tourPackageDetails?:
+    | T
+    | {
+        destinations?: T;
+        duration?: T;
+        travelDates?: T;
+        flexibleDates?: T;
+        numberOfTravelers?: T;
+        budgetPerPerson?: T;
+        travelTheme?: T;
+        inclusions?: T;
+      };
+  additionalNotes?: T;
+  quotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agents_select".
+ */
+export interface AgentsSelect<T extends boolean = true> {
+  user?: T;
+  companyName?: T;
+  gstNumber?: T;
+  panCard?: T;
+  tradeLicense?: T;
+  documents?: T;
+  verificationStatus?: T;
+  specializations?: T;
+  rating?: T;
+  totalBookings?: T;
+  phone?: T;
+  address?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes_select".
+ */
+export interface QuotesSelect<T extends boolean = true> {
+  requirement?: T;
+  agent?: T;
+  pricing?:
+    | T
+    | {
+        basePrice?: T;
+        taxes?: T;
+        total?: T;
+      };
+  inclusions?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  exclusions?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  validity?: T;
+  termsAndConditions?: T;
+  documents?: T;
+  status?: T;
+  detailedItinerary?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bookings_select".
+ */
+export interface BookingsSelect<T extends boolean = true> {
+  requirement?: T;
+  quote?: T;
+  user?: T;
+  agent?: T;
+  bookingId?: T;
+  travelerDetails?:
+    | T
+    | {
+        firstName?: T;
+        lastName?: T;
+        age?: T;
+        gender?: T;
+        passportNumber?: T;
+        email?: T;
+        phone?: T;
+        id?: T;
+      };
+  paymentStatus?: T;
+  bookingStatus?: T;
+  totalAmount?: T;
+  paidAmount?: T;
+  vouchers?: T;
+  bookingDate?: T;
+  travelDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  booking?: T;
+  user?: T;
+  agent?: T;
+  rating?: T;
+  review?: T;
+  photos?: T;
+  verified?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notifications_select".
+ */
+export interface NotificationsSelect<T extends boolean = true> {
+  user?: T;
+  title?: T;
+  message?: T;
+  type?: T;
+  read?: T;
+  link?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messages_select".
+ */
+export interface MessagesSelect<T extends boolean = true> {
+  requirement?: T;
+  sender?: T;
+  receiver?: T;
+  message?: T;
+  attachments?: T;
+  read?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payments_select".
+ */
+export interface PaymentsSelect<T extends boolean = true> {
+  booking?: T;
+  user?: T;
+  amount?: T;
+  paymentMethod?: T;
+  paymentStatus?: T;
+  transactionId?: T;
+  paymentGateway?: T;
+  paymentDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -22,6 +22,14 @@ import { Pages } from '@/collections/Pages'
 import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
+import { Agents } from './collections/Agents'
+import { Bookings } from './collections/Bookings'
+import { Messages } from './collections/Messages'
+import { Notifications } from './collections/Notifications'
+import { Payments } from './collections/Payments'
+import { Quotes } from './collections/Quotes'
+import { Requirements } from './collections/Requirements'
+import { Reviews } from './collections/Reviews'
 import { plugins } from './plugins'
 
 const filename = fileURLToPath(import.meta.url)
@@ -39,7 +47,20 @@ export default buildConfig({
     },
     user: Users.slug,
   },
-  collections: [Users, Pages, Categories, Media],
+  collections: [
+    Users,
+    Pages,
+    Categories,
+    Media,
+    Requirements,
+    Agents,
+    Quotes,
+    Bookings,
+    Reviews,
+    Notifications,
+    Messages,
+    Payments,
+  ],
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || '',
