@@ -2,6 +2,10 @@
 
 A comprehensive travel booking marketplace that connects travelers with 650+ verified travel agents to book customized holiday packages, flights, hotels, and more. Built with modern web technologies and featuring AI-powered trip planning.
 
+## Screenshot
+
+![Travel Homepage](homepage-screenshot.png 'Travel Homepage')
+
 ## ✨ Key Features
 
 ### 🎯 Core Platform Features
