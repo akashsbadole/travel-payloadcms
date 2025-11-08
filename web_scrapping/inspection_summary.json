@@ -1,0 +1,39 @@
+{
+  "Homepage": {
+    "[class*=\"package\"]": 18,
+    "[class*=\"holiday\"]": 1,
+    "[class*=\"card\"]": 78,
+    "[class*=\"item\"]": 142,
+    "[class*=\"offer\"]": 1,
+    "div[class*=\"list\"]": 5,
+    "div[class*=\"container\"]": 60,
+    "a[href*=\"package\"]": 350,
+    "a[href*=\"tour\"]": 479
+  },
+  "Kashmir Packages": {},
+  "Kerala Packages": {
+    "[class*=\"package\"]": 291,
+    "[class*=\"holiday\"]": 1,
+    "[class*=\"card\"]": 50,
+    "[class*=\"item\"]": 142,
+    "[class*=\"offer\"]": 1,
+    "[class*=\"trip\"]": 1,
+    "div[class*=\"list\"]": 4,
+    "div[class*=\"container\"]": 77,
+    "a[href*=\"package\"]": 806,
+    "a[href*=\"tour\"]": 957
+  },
+  "Goa Packages": {
+    "[class*=\"package\"]": 272,
+    "[class*=\"holiday\"]": 1,
+    "[class*=\"card\"]": 20,
+    "[class*=\"item\"]": 142,
+    "[class*=\"offer\"]": 1,
+    "[class*=\"trip\"]": 1,
+    "div[class*=\"list\"]": 3,
+    "div[class*=\"container\"]": 75,
+    "a[href*=\"package\"]": 822,
+    "a[href*=\"tour\"]": 819
+  },
+  "Bali Packages": {}
+}

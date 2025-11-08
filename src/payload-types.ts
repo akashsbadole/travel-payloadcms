@@ -79,11 +79,13 @@ export interface Config {
     requirements: Requirement;
     agents: Agent;
     quotes: Quote;
+    'quote-templates': QuoteTemplate;
     bookings: Booking;
     reviews: Review;
     notifications: Notification;
     messages: Message;
     payments: Payment;
+    payouts: Payout;
     forms: Form;
     'form-submissions': FormSubmission;
     addresses: Address;
@@ -120,11 +122,13 @@ export interface Config {
     requirements: RequirementsSelect<false> | RequirementsSelect<true>;
     agents: AgentsSelect<false> | AgentsSelect<true>;
     quotes: QuotesSelect<false> | QuotesSelect<true>;
+    'quote-templates': QuoteTemplatesSelect<false> | QuoteTemplatesSelect<true>;
     bookings: BookingsSelect<false> | BookingsSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     notifications: NotificationsSelect<false> | NotificationsSelect<true>;
     messages: MessagesSelect<false> | MessagesSelect<true>;
     payments: PaymentsSelect<false> | PaymentsSelect<true>;
+    payouts: PayoutsSelect<false> | PayoutsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     addresses: AddressesSelect<false> | AddressesSelect<true>;
@@ -146,10 +150,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    settings: Setting;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    settings: SettingsSelect<false> | SettingsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1110,24 +1116,59 @@ export interface Quote {
   id: number;
   requirement: number | Requirement;
   agent: number | Agent;
+  /**
+   * Auto-generated quote number
+   */
+  quoteNumber?: string | null;
   pricing: {
     basePrice: number;
     taxes?: number | null;
-    total: number;
+    serviceFee?: number | null;
+    discount?: number | null;
+    totalPrice: number;
   };
+  priceBreakdown?:
+    | {
+        item: string;
+        amount: number;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   inclusions?:
     | {
         item: string;
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
   exclusions?:
     | {
         item: string;
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
-  validity: string;
+  validity: {
+    validFrom: string;
+    validUntil: string;
+    bookingDeadline?: string | null;
+  };
+  cancellationPolicy?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   termsAndConditions?: {
     root: {
       type: string;
@@ -1143,8 +1184,26 @@ export interface Quote {
     };
     [k: string]: unknown;
   } | null;
+  paymentTerms?: {
+    /**
+     * Advance payment percentage required
+     */
+    advancePayment?: number | null;
+    paymentSchedule?:
+      | {
+          milestone: string;
+          percentage: number;
+          dueDate?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   documents?: (number | Media)[] | null;
-  status: 'draft' | 'sent' | 'viewed' | 'accepted' | 'rejected' | 'expired';
+  status: 'draft' | 'sent' | 'viewed' | 'accepted' | 'rejected' | 'expired' | 'withdrawn';
+  rejectionReason?: string | null;
+  /**
+   * Day-by-day itinerary with activities, meals, and accommodations
+   */
   detailedItinerary?: {
     root: {
       type: string;
@@ -1160,6 +1219,21 @@ export interface Quote {
     };
     [k: string]: unknown;
   } | null;
+  highlights?:
+    | {
+        highlight: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Any special offers or discounts included
+   */
+  specialOffers?: string | null;
+  viewCount?: number | null;
+  /**
+   * Time taken to respond in hours
+   */
+  responseTime?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1177,10 +1251,145 @@ export interface Agent {
   documents?: (number | Media)[] | null;
   verificationStatus: 'pending' | 'verified' | 'rejected';
   specializations?: ('flight' | 'hotel' | 'bus' | 'train' | 'tour-package')[] | null;
+  /**
+   * Deprecated - use averageRating instead
+   */
   rating?: number | null;
+  /**
+   * Average rating from all approved reviews
+   */
+  averageRating?: number | null;
+  /**
+   * Total number of approved reviews
+   */
+  totalReviews?: number | null;
   totalBookings?: number | null;
   phone?: string | null;
   address?: string | null;
+  /**
+   * Total earnings from all bookings
+   */
+  totalEarnings?: number | null;
+  /**
+   * Earnings pending payout
+   */
+  pendingPayout?: number | null;
+  /**
+   * Total amount paid out
+   */
+  paidOut?: number | null;
+  /**
+   * Commission rate percentage (default 2%)
+   */
+  commissionRate?: number | null;
+  bankDetails?: {
+    accountHolderName?: string | null;
+    accountNumber?: string | null;
+    bankName?: string | null;
+    ifscCode?: string | null;
+    upiId?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quote-templates".
+ */
+export interface QuoteTemplate {
+  id: number;
+  agent: number | Agent;
+  /**
+   * Template name for easy identification
+   */
+  name: string;
+  serviceType: 'flight' | 'hotel' | 'bus' | 'train' | 'tour-package';
+  /**
+   * Brief description of this template
+   */
+  description?: string | null;
+  basePrice?: number | null;
+  inclusions?:
+    | {
+        item: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  exclusions?:
+    | {
+        item: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Standard itinerary template
+   */
+  itineraryTemplate?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  termsAndConditions?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  cancellationPolicy?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  highlights?:
+    | {
+        highlight: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Default validity period in days
+   */
+  validityDays?: number | null;
+  /**
+   * Default advance payment percentage
+   */
+  advancePaymentPercentage?: number | null;
+  /**
+   * Number of times this template has been used
+   */
+  usageCount?: number | null;
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1211,9 +1420,73 @@ export interface Booking {
   bookingStatus: 'confirmed' | 'pending' | 'cancelled' | 'completed';
   totalAmount: number;
   paidAmount?: number | null;
+  /**
+   * 2% commission deducted from agent
+   */
+  agentCommission?: number | null;
+  /**
+   * 1% commission charged to customer
+   */
+  customerCommission?: number | null;
+  /**
+   * Total platform commission (agent + customer)
+   */
+  platformCommission?: number | null;
+  /**
+   * Amount to be paid to agent after commission
+   */
+  agentPayout?: number | null;
   vouchers?: (number | Media)[] | null;
+  tickets?: (number | Media)[] | null;
+  invoice?: (number | null) | Media;
   bookingDate: string;
   travelDate: string;
+  returnDate?: string | null;
+  specialRequests?: string | null;
+  emergencyContact?: {
+    name?: string | null;
+    phone?: string | null;
+    relationship?: string | null;
+  };
+  modifications?:
+    | {
+        date: string;
+        description: string;
+        modifiedBy?: string | null;
+        status?: ('requested' | 'approved' | 'rejected') | null;
+        id?: string | null;
+      }[]
+    | null;
+  cancellation?: {
+    cancelledDate?: string | null;
+    cancelledBy?: ('user' | 'agent' | 'admin') | null;
+    reason?: string | null;
+    refundAmount?: number | null;
+    refundStatus?: ('pending' | 'processed' | 'completed') | null;
+  };
+  dispute?: {
+    status?: ('none' | 'raised' | 'in-review' | 'resolved') | null;
+    reason?: string | null;
+    resolution?: string | null;
+    raisedDate?: string | null;
+    resolvedDate?: string | null;
+  };
+  /**
+   * Customer review after trip completion
+   */
+  review?: (number | null) | Review;
+  completionDate?: string | null;
+  /**
+   * Internal notes for tracking
+   */
+  notes?:
+    | {
+        date: string;
+        note: string;
+        addedBy?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1227,9 +1500,46 @@ export interface Review {
   user: number | User;
   agent: number | Agent;
   rating: number;
+  detailedRatings?: {
+    communication?: number | null;
+    valueForMoney?: number | null;
+    professionalism?: number | null;
+    responsiveness?: number | null;
+  };
+  title: string;
   review: string;
+  pros?:
+    | {
+        pro: string;
+        id?: string | null;
+      }[]
+    | null;
+  cons?:
+    | {
+        con: string;
+        id?: string | null;
+      }[]
+    | null;
   photos?: (number | Media)[] | null;
+  tripType?: ('solo' | 'couple' | 'family' | 'friends' | 'business') | null;
+  travelDate?: string | null;
+  /**
+   * Verified booking - user actually traveled
+   */
   verified?: boolean | null;
+  status: 'pending' | 'approved' | 'rejected';
+  /**
+   * Internal notes for moderation
+   */
+  moderationNotes?: string | null;
+  /**
+   * Number of users who found this review helpful
+   */
+  helpful?: number | null;
+  agentResponse?: {
+    response?: string | null;
+    responseDate?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1242,9 +1552,26 @@ export interface Notification {
   user: number | User;
   title: string;
   message: string;
-  type: 'requirement' | 'quote' | 'booking' | 'payment' | 'message';
+  type: 'requirement' | 'quote' | 'booking' | 'payment' | 'message' | 'review' | 'payout' | 'system';
+  priority?: ('low' | 'normal' | 'high' | 'urgent') | null;
   read?: boolean | null;
+  readAt?: string | null;
+  /**
+   * URL to navigate when notification is clicked
+   */
   link?: string | null;
+  /**
+   * ID of related entity (requirement, quote, booking, etc.)
+   */
+  relatedId?: string | null;
+  /**
+   * Whether this notification requires user action
+   */
+  actionRequired?: boolean | null;
+  /**
+   * When this notification expires (optional)
+   */
+  expiresAt?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1257,9 +1584,16 @@ export interface Message {
   requirement: number | Requirement;
   sender: number | User;
   receiver: number | User;
+  messageType?: ('text' | 'file' | 'system') | null;
   message: string;
   attachments?: (number | Media)[] | null;
   read?: boolean | null;
+  readAt?: string | null;
+  /**
+   * Message this is replying to
+   */
+  replyTo?: (number | null) | Message;
+  isImportant?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1277,6 +1611,50 @@ export interface Payment {
   transactionId: string;
   paymentGateway?: string | null;
   paymentDate: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payouts".
+ */
+export interface Payout {
+  id: number;
+  /**
+   * Auto-generated payout ID
+   */
+  payoutId: string;
+  agent: number | Agent;
+  amount: number;
+  /**
+   * Bookings included in this payout
+   */
+  bookings?: (number | Booking)[] | null;
+  status: 'requested' | 'approved' | 'processing' | 'completed' | 'rejected' | 'failed';
+  requestedDate: string;
+  approvedDate?: string | null;
+  completedDate?: string | null;
+  paymentMethod?: ('bank-transfer' | 'upi' | 'cheque') | null;
+  /**
+   * Bank transaction reference number
+   */
+  transactionId?: string | null;
+  bankDetails?: {
+    accountHolderName?: string | null;
+    accountNumber?: string | null;
+    bankName?: string | null;
+    ifscCode?: string | null;
+    upiId?: string | null;
+  };
+  /**
+   * Internal notes for payout processing
+   */
+  notes?: string | null;
+  rejectionReason?: string | null;
+  /**
+   * Payout invoice/receipt
+   */
+  invoice?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -1350,6 +1728,10 @@ export interface PayloadLockedDocument {
         value: number | Quote;
       } | null)
     | ({
+        relationTo: 'quote-templates';
+        value: number | QuoteTemplate;
+      } | null)
+    | ({
         relationTo: 'bookings';
         value: number | Booking;
       } | null)
@@ -1368,6 +1750,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'payments';
         value: number | Payment;
+      } | null)
+    | ({
+        relationTo: 'payouts';
+        value: number | Payout;
       } | null)
     | ({
         relationTo: 'forms';
@@ -1778,9 +2164,24 @@ export interface AgentsSelect<T extends boolean = true> {
   verificationStatus?: T;
   specializations?: T;
   rating?: T;
+  averageRating?: T;
+  totalReviews?: T;
   totalBookings?: T;
   phone?: T;
   address?: T;
+  totalEarnings?: T;
+  pendingPayout?: T;
+  paidOut?: T;
+  commissionRate?: T;
+  bankDetails?:
+    | T
+    | {
+        accountHolderName?: T;
+        accountNumber?: T;
+        bankName?: T;
+        ifscCode?: T;
+        upiId?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1791,30 +2192,113 @@ export interface AgentsSelect<T extends boolean = true> {
 export interface QuotesSelect<T extends boolean = true> {
   requirement?: T;
   agent?: T;
+  quoteNumber?: T;
   pricing?:
     | T
     | {
         basePrice?: T;
         taxes?: T;
-        total?: T;
+        serviceFee?: T;
+        discount?: T;
+        totalPrice?: T;
+      };
+  priceBreakdown?:
+    | T
+    | {
+        item?: T;
+        amount?: T;
+        description?: T;
+        id?: T;
       };
   inclusions?:
     | T
     | {
         item?: T;
+        description?: T;
         id?: T;
       };
   exclusions?:
     | T
     | {
         item?: T;
+        description?: T;
         id?: T;
       };
-  validity?: T;
+  validity?:
+    | T
+    | {
+        validFrom?: T;
+        validUntil?: T;
+        bookingDeadline?: T;
+      };
+  cancellationPolicy?: T;
   termsAndConditions?: T;
+  paymentTerms?:
+    | T
+    | {
+        advancePayment?: T;
+        paymentSchedule?:
+          | T
+          | {
+              milestone?: T;
+              percentage?: T;
+              dueDate?: T;
+              id?: T;
+            };
+      };
   documents?: T;
   status?: T;
+  rejectionReason?: T;
   detailedItinerary?: T;
+  highlights?:
+    | T
+    | {
+        highlight?: T;
+        id?: T;
+      };
+  specialOffers?: T;
+  viewCount?: T;
+  responseTime?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quote-templates_select".
+ */
+export interface QuoteTemplatesSelect<T extends boolean = true> {
+  agent?: T;
+  name?: T;
+  serviceType?: T;
+  description?: T;
+  basePrice?: T;
+  inclusions?:
+    | T
+    | {
+        item?: T;
+        description?: T;
+        id?: T;
+      };
+  exclusions?:
+    | T
+    | {
+        item?: T;
+        description?: T;
+        id?: T;
+      };
+  itineraryTemplate?: T;
+  termsAndConditions?: T;
+  cancellationPolicy?: T;
+  highlights?:
+    | T
+    | {
+        highlight?: T;
+        id?: T;
+      };
+  validityDays?: T;
+  advancePaymentPercentage?: T;
+  usageCount?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1844,9 +2328,61 @@ export interface BookingsSelect<T extends boolean = true> {
   bookingStatus?: T;
   totalAmount?: T;
   paidAmount?: T;
+  agentCommission?: T;
+  customerCommission?: T;
+  platformCommission?: T;
+  agentPayout?: T;
   vouchers?: T;
+  tickets?: T;
+  invoice?: T;
   bookingDate?: T;
   travelDate?: T;
+  returnDate?: T;
+  specialRequests?: T;
+  emergencyContact?:
+    | T
+    | {
+        name?: T;
+        phone?: T;
+        relationship?: T;
+      };
+  modifications?:
+    | T
+    | {
+        date?: T;
+        description?: T;
+        modifiedBy?: T;
+        status?: T;
+        id?: T;
+      };
+  cancellation?:
+    | T
+    | {
+        cancelledDate?: T;
+        cancelledBy?: T;
+        reason?: T;
+        refundAmount?: T;
+        refundStatus?: T;
+      };
+  dispute?:
+    | T
+    | {
+        status?: T;
+        reason?: T;
+        resolution?: T;
+        raisedDate?: T;
+        resolvedDate?: T;
+      };
+  review?: T;
+  completionDate?: T;
+  notes?:
+    | T
+    | {
+        date?: T;
+        note?: T;
+        addedBy?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1859,9 +2395,41 @@ export interface ReviewsSelect<T extends boolean = true> {
   user?: T;
   agent?: T;
   rating?: T;
+  detailedRatings?:
+    | T
+    | {
+        communication?: T;
+        valueForMoney?: T;
+        professionalism?: T;
+        responsiveness?: T;
+      };
+  title?: T;
   review?: T;
+  pros?:
+    | T
+    | {
+        pro?: T;
+        id?: T;
+      };
+  cons?:
+    | T
+    | {
+        con?: T;
+        id?: T;
+      };
   photos?: T;
+  tripType?: T;
+  travelDate?: T;
   verified?: T;
+  status?: T;
+  moderationNotes?: T;
+  helpful?: T;
+  agentResponse?:
+    | T
+    | {
+        response?: T;
+        responseDate?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1874,8 +2442,13 @@ export interface NotificationsSelect<T extends boolean = true> {
   title?: T;
   message?: T;
   type?: T;
+  priority?: T;
   read?: T;
+  readAt?: T;
   link?: T;
+  relatedId?: T;
+  actionRequired?: T;
+  expiresAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1887,9 +2460,13 @@ export interface MessagesSelect<T extends boolean = true> {
   requirement?: T;
   sender?: T;
   receiver?: T;
+  messageType?: T;
   message?: T;
   attachments?: T;
   read?: T;
+  readAt?: T;
+  replyTo?: T;
+  isImportant?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1906,6 +2483,36 @@ export interface PaymentsSelect<T extends boolean = true> {
   transactionId?: T;
   paymentGateway?: T;
   paymentDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payouts_select".
+ */
+export interface PayoutsSelect<T extends boolean = true> {
+  payoutId?: T;
+  agent?: T;
+  amount?: T;
+  bookings?: T;
+  status?: T;
+  requestedDate?: T;
+  approvedDate?: T;
+  completedDate?: T;
+  paymentMethod?: T;
+  transactionId?: T;
+  bankDetails?:
+    | T
+    | {
+        accountHolderName?: T;
+        accountNumber?: T;
+        bankName?: T;
+        ifscCode?: T;
+        upiId?: T;
+      };
+  notes?: T;
+  rejectionReason?: T;
+  invoice?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2355,6 +2962,41 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: number;
+  commissionSettings: {
+    /**
+     * Commission rate for agents (percentage)
+     */
+    agentCommissionRate: number;
+    /**
+     * Commission rate for customers (percentage)
+     */
+    customerCommissionRate: number;
+    /**
+     * Minimum amount required for payout request
+     */
+    minimumPayoutThreshold: number;
+    payoutSchedule?: ('weekly' | 'bi-weekly' | 'monthly') | null;
+  };
+  paymentSettings?: {
+    /**
+     * PayPal Client ID
+     */
+    paypalClientId?: string | null;
+    /**
+     * PayPal Secret (stored securely)
+     */
+    paypalSecret?: string | null;
+    paymentMode?: ('sandbox' | 'live') | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2394,6 +3036,30 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  commissionSettings?:
+    | T
+    | {
+        agentCommissionRate?: T;
+        customerCommissionRate?: T;
+        minimumPayoutThreshold?: T;
+        payoutSchedule?: T;
+      };
+  paymentSettings?:
+    | T
+    | {
+        paypalClientId?: T;
+        paypalSecret?: T;
+        paymentMode?: T;
       };
   updatedAt?: T;
   createdAt?: T;

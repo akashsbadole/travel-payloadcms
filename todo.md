@@ -26,30 +26,45 @@
 
 ---
 
+## **RECENTLY ADDED ✨**
+
+### **AI Features (NEW!)**
+- [x] AI Travel Assistant chatbot page
+- [x] Conversational requirement gathering
+- [x] Auto-generated itineraries
+- [x] Booking.com-inspired modern design
+- [ ] Integrate real AI API (OpenAI/Anthropic)
+- [ ] Save AI conversations to database
+- [ ] Convert AI chat to formal requirement
+- [ ] AI-powered price predictions
+- [ ] Smart destination recommendations
+
+---
+
 ## **TODO - PRIORITY ORDER 🎯**
 
-### **PHASE 1: Commission System (CRITICAL)**
+### **PHASE 1: Commission System (CRITICAL)** ✅
 
 **Requirement:** 2% commission from agents, 1% commission from customers
 
 #### Tasks:
-- [ ] Add commission fields to Bookings collection:
+- [x] Add commission fields to Bookings collection:
   - `agentCommission` (number, calculated as 2% of booking amount)
   - `customerCommission` (number, calculated as 1% of booking amount)
   - `platformCommission` (number, total = agentCommission + customerCommission)
   - `agentPayout` (number, booking amount - agentCommission)
   
-- [ ] Create commission calculation hooks:
+- [x] Create commission calculation hooks:
   - `beforeChange` hook on Bookings to auto-calculate commissions
   - Update agent earnings when booking is confirmed
   
-- [ ] Add commission tracking to Agents collection:
+- [x] Add commission tracking to Agents collection:
   - `totalEarnings` (number)
   - `pendingPayout` (number)
   - `paidOut` (number)
   - `commissionRate` (number, default 2%)
 
-- [ ] Create Settings Global for commission configuration:
+- [x] Create Settings Global for commission configuration:
   - Agent commission rate (default 2%)
   - Customer commission rate (default 1%)
   - Minimum payout threshold
@@ -59,8 +74,8 @@
 
 ### **PHASE 2: User Frontend Pages**
 
-#### A. Homepage & Navigation
-- [ ] Create landing page (`src/app/(app)/page.tsx`)
+#### A. Homepage & Navigation ✅
+- [x] Create landing page (`src/app/(app)/(home)/page.tsx`)
   - Hero section with travel types
   - How it works section
   - Featured destinations
@@ -71,22 +86,22 @@
   - User profile dropdown
   - Notifications icon
 
-#### B. Requirement Submission Flow
-- [ ] Create `/requirements/new` page
+#### B. Requirement Submission Flow ✅
+- [x] Create `/requirements/new` page
   - Service type selection (Flight/Hotel/Bus/Train/Package)
   - Dynamic form based on service type
   - Form validation
   - Submit to PayloadCMS API
   
-- [ ] Create requirement form components:
+- [x] Create requirement form components:
   - `FlightRequirementForm.tsx`
   - `HotelRequirementForm.tsx`
   - `BusRequirementForm.tsx`
   - `TrainRequirementForm.tsx`
   - `TourPackageRequirementForm.tsx`
 
-#### C. User Dashboard
-- [ ] Create `/dashboard` page
+#### C. User Dashboard ✅
+- [x] Create `/dashboard` page
   - Overview stats (active requirements, quotes received, bookings)
   - Recent activity feed
   

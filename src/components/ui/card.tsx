@@ -7,7 +7,20 @@ function Card({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="card"
       className={cn(
-        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
+        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-border p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-primary/5 hover:border-primary/20',
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+
+function TravelCard({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      data-slot="travel-card"
+      className={cn(
+        'form-travel text-card-foreground flex flex-col gap-6 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl',
         className,
       )}
       {...props}
@@ -55,4 +68,4 @@ function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, TravelCard }

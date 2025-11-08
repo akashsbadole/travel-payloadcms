@@ -22,11 +22,14 @@ import { Pages } from '@/collections/Pages'
 import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
+import { Settings } from '@/globals/Settings'
 import { Agents } from './collections/Agents'
 import { Bookings } from './collections/Bookings'
 import { Messages } from './collections/Messages'
 import { Notifications } from './collections/Notifications'
 import { Payments } from './collections/Payments'
+import { Payouts } from './collections/Payouts'
+import { QuoteTemplates } from './collections/QuoteTemplates'
 import { Quotes } from './collections/Quotes'
 import { Requirements } from './collections/Requirements'
 import { Reviews } from './collections/Reviews'
@@ -55,11 +58,13 @@ export default buildConfig({
     Requirements,
     Agents,
     Quotes,
+    QuoteTemplates,
     Bookings,
     Reviews,
     Notifications,
     Messages,
     Payments,
+    Payouts,
   ],
   db: sqliteAdapter({
     client: {
@@ -103,7 +108,7 @@ export default buildConfig({
   }),
   //email: nodemailerAdapter(),
   endpoints: [],
-  globals: [Header, Footer],
+  globals: [Header, Footer, Settings],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder

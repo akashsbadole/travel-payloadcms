@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "scraped_at": "2025-11-07T01:50:12.580443",
+    "source": "https://traveltriangle.com/",
+    "scraper_version": "Sample 1.0",
+    "total_packages": 10,
+    "note": "Sample holiday package data for demonstration"
+  },
+  "packages": [
+    {
+      "name": "Enchanting Kerala Backwaters & Hills Tour",
+      "price": "₹25,999",
+      "duration": "5 days 4 nights",
+      "url": "https://traveltriangle.com/packages/kerala-backwaters-hills",
+      "destination": "Kerala",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Bali Paradise Beach & Temple Tour",
+      "price": "₹45,999",
+      "duration": "6 days 5 nights",
+      "url": "https://traveltriangle.com/packages/bali-beach-temple",
+      "destination": "Bali",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Romantic Goa Beach & Nightlife Package",
+      "price": "₹18,999",
+      "duration": "4 days 3 nights",
+      "url": "https://traveltriangle.com/packages/goa-beach-nightlife",
+      "destination": "Goa",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Heavenly Kashmir Valley & Gulmarg Tour",
+      "price": "₹35,999",
+      "duration": "6 days 5 nights",
+      "url": "https://traveltriangle.com/packages/kashmir-valley-gulmarg",
+      "destination": "Kashmir",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Royal Rajasthan Heritage & Desert Safari",
+      "price": "₹42,999",
+      "duration": "7 days 6 nights",
+      "url": "https://traveltriangle.com/packages/rajasthan-heritage-desert",
+      "destination": "Rajasthan",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Exotic Thailand Bangkok & Phuket Tour",
+      "price": "₹38,999",
+      "duration": "5 days 4 nights",
+      "url": "https://traveltriangle.com/packages/thailand-bangkok-phuket",
+      "destination": "Thailand",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Luxurious Dubai Shopping & Desert Safari",
+      "price": "₹52,999",
+      "duration": "5 days 4 nights",
+      "url": "https://traveltriangle.com/packages/dubai-shopping-desert",
+      "destination": "Dubai",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Tropical Maldives Island Hopping Experience",
+      "price": "₹68,999",
+      "duration": "6 days 5 nights",
+      "url": "https://traveltriangle.com/packages/maldives-island-hopping",
+      "destination": "Maldives",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Sri Lanka Cultural & Wildlife Adventure",
+      "price": "₹32,999",
+      "duration": "7 days 6 nights",
+      "url": "https://traveltriangle.com/packages/sri-lanka-cultural-wildlife",
+      "destination": "Sri Lanka",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    },
+    {
+      "name": "Singapore City & Sentosa Island Fun",
+      "price": "₹48,999",
+      "duration": "5 days 4 nights",
+      "url": "https://traveltriangle.com/packages/singapore-city-sentosa",
+      "destination": "Singapore",
+      "scraped_at": "2025-11-07T01:50:12.580443"
+    }
+  ]
+}

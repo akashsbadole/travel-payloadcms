@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "scraped_at": "2025-11-07T01:45:00.000000",
+    "source": "https://traveltriangle.com/",
+    "total_packages": 5
+  },
+  "packages": [
+    {
+      "name": "Alleppey-Munnar Kerala Weekend Tour",
+      "price": "N/A",
+      "duration": "N/A",
+      "url": "https://traveltriangle.com/packages/3night-4day-bestselling-munnar-alleppey-kerala-tour",
+      "source_url": "https://traveltriangle.com/tour-packages/kerala",
+      "destination": "Kerala"
+    },
+    {
+      "name": "Best-Selling Goa Trip Package For Friends",
+      "price": "N/A",
+      "duration": "N/A",
+      "url": "https://traveltriangle.com/packages/goa-friends-tour",
+      "source_url": "https://traveltriangle.com/tour-packages/goa",
+      "destination": "Goa"
+    },
+    {
+      "name": "Amazing Kashmir Tour Package",
+      "price": "N/A",
+      "duration": "N/A",
+      "url": "https://traveltriangle.com/packages/4nights-5days-kashmir-tour",
+      "source_url": "https://traveltriangle.com/tour-packages/kashmir",
+      "destination": "Kashmir"
+    },
+    {
+      "name": "Bali Enchanted Discovery",
+      "price": "N/A",
+      "duration": "N/A",
+      "url": "https://traveltriangle.com/packages/bali-city-tour",
+      "source_url": "https://traveltriangle.com/tour-packages/bali",
+      "destination": "Bali"
+    },
+    {
+      "name": "Discover Our Ravishing 3 Nights 4 Days Rajasthan Vacation",
+      "price": "N/A",
+      "duration": "N/A",
+      "url": "https://traveltriangle.com/packages/3nights-4days-rajasthan-vacation",
+      "source_url": "https://traveltriangle.com/tour-packages/rajasthan",
+      "destination": "Rajasthan"
+    }
+  ]
+}

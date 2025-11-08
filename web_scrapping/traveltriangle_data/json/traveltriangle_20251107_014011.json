@@ -1,0 +1,252 @@
+{
+  "metadata": {
+    "scraped_at": "2025-11-07T01:40:11.297124",
+    "source": "https://traveltriangle.com/",
+    "scraper_version": "2.0.0",
+    "total_destinations": 30,
+    "total_packages": 0
+  },
+  "destinations": [
+    {
+      "name": "Kashmir",
+      "url": "https://traveltriangle.com/tour-packages/kashmir",
+      "category": null,
+      "region": "North India",
+      "scraped_at": "2025-11-07T01:39:39.194045",
+      "hash_id": "ebc92fa9ef25"
+    },
+    {
+      "name": "Himachal",
+      "url": "https://traveltriangle.com/tour-packages/himachal",
+      "category": null,
+      "region": "North India",
+      "scraped_at": "2025-11-07T01:39:39.194045",
+      "hash_id": "de8cb8f6d498"
+    },
+    {
+      "name": "Goa",
+      "url": "https://traveltriangle.com/tour-packages/goa",
+      "category": null,
+      "region": "West India",
+      "scraped_at": "2025-11-07T01:39:39.194045",
+      "hash_id": "53d4218a7271"
+    },
+    {
+      "name": "Rajasthan",
+      "url": "https://traveltriangle.com/tour-packages/rajasthan",
+      "category": null,
+      "region": "North India",
+      "scraped_at": "2025-11-07T01:39:39.194045",
+      "hash_id": "b2122e2288f9"
+    },
+    {
+      "name": "Kerala",
+      "url": "https://traveltriangle.com/tour-packages/kerala",
+      "category": null,
+      "region": "South India",
+      "scraped_at": "2025-11-07T01:39:39.194045",
+      "hash_id": "39d303f19fd0"
+    },
+    {
+      "name": "Andaman",
+      "url": "https://traveltriangle.com/tour-packages/andaman",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194045",
+      "hash_id": "90c68086fa51"
+    },
+    {
+      "name": "Sikkim",
+      "url": "https://traveltriangle.com/tour-packages/sikkim",
+      "category": null,
+      "region": "East India",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "82f0ac2f8ce9"
+    },
+    {
+      "name": "Uttarakhand",
+      "url": "https://traveltriangle.com/tour-packages/uttarakhand",
+      "category": null,
+      "region": "North India",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "0fdda998da35"
+    },
+    {
+      "name": "View All",
+      "url": "https://traveltriangle.com/tour-packages/india",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "246be52db966"
+    },
+    {
+      "name": "Bali",
+      "url": "https://traveltriangle.com/tour-packages/bali",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "70f5bd2d0721"
+    },
+    {
+      "name": "Sri Lanka",
+      "url": "https://traveltriangle.com/tour-packages/sri-lanka",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "25a8a1cd69fa"
+    },
+    {
+      "name": "Maldives",
+      "url": "https://traveltriangle.com/tour-packages/maldives",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "08a740ba9a80"
+    },
+    {
+      "name": "Vietnam",
+      "url": "https://traveltriangle.com/tour-packages/vietnam",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "ed88ecd23bca"
+    },
+    {
+      "name": "Mauritius",
+      "url": "https://traveltriangle.com/tour-packages/mauritius",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "70dc6ab88697"
+    },
+    {
+      "name": "Europe",
+      "url": "https://traveltriangle.com/tour-packages/europe",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "c93c302456eb"
+    },
+    {
+      "name": "Dubai",
+      "url": "https://traveltriangle.com/tour-packages/dubai",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "0322a3d16904"
+    },
+    {
+      "name": "Thailand",
+      "url": "https://traveltriangle.com/tour-packages/thailand",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "503c22eb9dff"
+    },
+    {
+      "name": "Singapore",
+      "url": "https://traveltriangle.com/tour-packages/singapore",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "0b06abd838b6"
+    },
+    {
+      "name": "Turkey",
+      "url": "https://traveltriangle.com/tour-packages/turkey",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "87092f9bb74a"
+    },
+    {
+      "name": "Bhutan",
+      "url": "https://traveltriangle.com/tour-packages/bhutan",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "89832dae739c"
+    },
+    {
+      "name": "Seychelles",
+      "url": "https://traveltriangle.com/tour-packages/seychelles",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "c0948a0140d7"
+    },
+    {
+      "name": "View All",
+      "url": "https://traveltriangle.com/tour-packages/international",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.194585",
+      "hash_id": "8f34f48d5067"
+    },
+    {
+      "name": "View PackagesBest TimeApr - JulHimachal420+ packagesStarting from:â¹5,000",
+      "url": "https://traveltriangle.com/tour-packages/himachal?days[]=4-6",
+      "category": null,
+      "region": "North India",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "c4f5d896155f"
+    },
+    {
+      "name": "View PackagesBest TimeOct - MarBali88+ packagesStarting from:â¹15,999",
+      "url": "https://traveltriangle.com/tour-packages/bali?days[]=4-6",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "10bde21fe3b2"
+    },
+    {
+      "name": "View PackagesBest TimeApr - JunThailand256+ packagesStarting from:â¹6,056",
+      "url": "https://traveltriangle.com/tour-packages/thailand?days[]=4-6",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "0c6a78413849"
+    },
+    {
+      "name": "View PackagesBest TimeJan - JulUttarakhand167+ packagesStarting from:â¹8,399",
+      "url": "https://traveltriangle.com/tour-packages/uttarakhand?days[]=4-6",
+      "category": null,
+      "region": "North India",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "7bfc6f8103b6"
+    },
+    {
+      "name": "View PackagesBest TimeOct - FebDubai128+ packagesStarting from:â¹13,999",
+      "url": "https://traveltriangle.com/tour-packages/dubai?days[]=4-6",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "ca4babf6d06f"
+    },
+    {
+      "name": "View PackagesBest TimeOct - MarKerala995+ packagesStarting from:â¹8,370",
+      "url": "https://traveltriangle.com/tour-packages/kerala?days[]=4-6",
+      "category": null,
+      "region": "South India",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "2f6ac35e52de"
+    },
+    {
+      "name": "View PackagesBest TimeOct - FebSri Lanka102+ packagesStarting from:â¹12,157",
+      "url": "https://traveltriangle.com/tour-packages/sri-lanka?days[]=4-6",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "add3b1327985"
+    },
+    {
+      "name": "View PackagesBest TimeNov - JanVietnam25+ packagesStarting from:â¹14,280",
+      "url": "https://traveltriangle.com/tour-packages/vietnam?days[]=4-6",
+      "category": null,
+      "region": "International",
+      "scraped_at": "2025-11-07T01:39:39.195190",
+      "hash_id": "d8c8d1653b9e"
+    }
+  ],
+  "packages": []
+}

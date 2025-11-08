@@ -1,6 +1,8 @@
-const plugin = require('tailwindcss/plugin')
+import containerQueries from '@tailwindcss/container-queries'
+import typographyPlugin from '@tailwindcss/typography'
+import plugin from 'tailwindcss/plugin'
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -48,6 +50,12 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        /* Brand colors (use CSS RGB variables so Tailwind opacity utilities like `/10` work).
+           See `src/app/(app)/globals.css` for the actual RGB variable values. */
+        'travel-blue': 'rgb(var(--travel-blue-rgb) / <alpha-value>)',
+        'travel-light-blue': 'rgb(var(--travel-light-blue-rgb) / <alpha-value>)',
+        'travel-dark-blue': 'rgb(var(--travel-dark-blue-rgb) / <alpha-value>)',
+
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
@@ -85,7 +93,7 @@ export default {
         error: 'hsl(var(--error))',
         warning: 'hsl(var(--warning))',
       },
-      typography: ({ theme }) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
             '--tw-prose-body': 'var(--text)',
@@ -176,8 +184,8 @@ export default {
     hoverOnlyWhenSupported: true,
   },
   plugins: [
-    require('@tailwindcss/container-queries'),
-    require('@tailwindcss/typography'),
+    containerQueries,
+    typographyPlugin,
     plugin(({ matchUtilities, theme }) => {
       matchUtilities(
         {
@@ -194,3 +202,5 @@ export default {
     }),
   ],
 }
+
+export default config

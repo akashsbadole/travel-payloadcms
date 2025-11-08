@@ -2,6 +2,17 @@ import type { CollectionConfig } from 'payload'
 
 export const Requirements: CollectionConfig = {
     slug: 'requirements',
+    hooks: {
+        beforeChange: [
+            ({ req, data }) => {
+                // Auto-populate user from request if not provided
+                if (req.user && !data.user) {
+                    data.user = req.user.id
+                }
+                return data
+            },
+        ],
+    },
     access: {
         read: ({ req: { user } }) => !!user,
         create: ({ req: { user } }) => !!user,
@@ -19,6 +30,9 @@ export const Requirements: CollectionConfig = {
             type: 'relationship',
             relationTo: 'users',
             required: true,
+            admin: {
+                readOnly: true,
+            },
         },
         {
             name: 'serviceType',

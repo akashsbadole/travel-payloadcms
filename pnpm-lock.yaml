@@ -29,8 +29,23 @@ importers:
       '@payloadcms/plugin-form-builder':
         specifier: 3.62.1
         version: 3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
+      '@payloadcms/plugin-import-export':
+        specifier: ^3.62.1
+        version: 3.62.1(@payloadcms/ui@3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@payloadcms/plugin-nested-docs':
+        specifier: ^3.62.1
+        version: 3.62.1(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))
+      '@payloadcms/plugin-redirects':
+        specifier: ^3.62.1
+        version: 3.62.1(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))
+      '@payloadcms/plugin-search':
+        specifier: ^3.62.1
+        version: 3.62.1(@types/react@19.0.1)(graphql@16.12.0)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
       '@payloadcms/plugin-seo':
         specifier: 3.62.1
+        version: 3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
+      '@payloadcms/plugin-stripe':
+        specifier: ^3.62.1
         version: 3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
       '@payloadcms/richtext-lexical':
         specifier: 3.62.1
@@ -1359,12 +1374,40 @@ packages:
       react: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
       react-dom: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
 
+  '@payloadcms/plugin-import-export@3.62.1':
+    resolution: {integrity: sha512-8WxI/UX/KPWfEbDkB/xkexdMl+l+bBB2nFLQo38ZCePRiFTGIWCK3Dm7i8gRxzz8E2x64i5rsB3FD4wHEgRWUw==}
+    peerDependencies:
+      '@payloadcms/ui': 3.62.1
+      payload: 3.62.1
+
+  '@payloadcms/plugin-nested-docs@3.62.1':
+    resolution: {integrity: sha512-IGNAm3ELlsC/d//FF/8xaN+rcuMjnMgagEK0+f+rLP/BhX03ybLV+I/76ybb2r6i3ws/8hyqVcebGxP8kORj4g==}
+    peerDependencies:
+      payload: 3.62.1
+
+  '@payloadcms/plugin-redirects@3.62.1':
+    resolution: {integrity: sha512-hqlcdrQN0zmzjQhoG4QYTfMGgqO/LdT9f0LG2amosrqTgAqwPEgQMpMLhCg2WH8N0043ZuSx5tFDRApDTVVvSA==}
+    peerDependencies:
+      payload: 3.62.1
+
+  '@payloadcms/plugin-search@3.62.1':
+    resolution: {integrity: sha512-K5z96kf5PYyQos2nrO3NtGnGM9n1YOXmBS5ivnqeqbsTqzhQNpQK2wLVMpwzOY3o4X+oJxJ+WRT0+1P4/GgzEw==}
+    peerDependencies:
+      payload: 3.62.1
+      react: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
+      react-dom: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
+
   '@payloadcms/plugin-seo@3.62.1':
     resolution: {integrity: sha512-Bb70nr86D0GWFTTynoKQWv6H71+ReHvQ9P80n2UDVvStTi7lytg/yTA07y43a7njBOdeZjkF+idV+3oakrmnoQ==}
     peerDependencies:
       payload: 3.62.1
       react: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
       react-dom: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
+
+  '@payloadcms/plugin-stripe@3.62.1':
+    resolution: {integrity: sha512-VfyVHdU4dmau2ss+ZTgRnvZU/ki1nLNsJ0gQqybTbRPKzdxrZpooOaV5DZ0IhyUqY/FfrtIYWR22aA1eAetVfw==}
+    peerDependencies:
+      payload: 3.62.1
 
   '@payloadcms/richtext-lexical@3.62.1':
     resolution: {integrity: sha512-k5Sy/6aNLWAN+jygAOF91jxPqnfQ9o9SNKB1QSyKVaSUGYkku6O5SZb1wJNnMzVXz2uDxVD5RzJu9DDH4Rk87Q==}
@@ -2619,6 +2662,12 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
+  csv-parse@5.6.0:
+    resolution: {integrity: sha512-l3nz3euub2QMg5ouu5U09Ew9Wf6/wQ8I++ch1loQ0ljmzhmfZYrH9fflS22i/PQEvsPvxCwxgz5q7UB8K1JO4Q==}
+
+  csv-stringify@6.6.0:
+    resolution: {integrity: sha512-YW32lKOmIBgbxtu3g5SaiqWNwa/9ISQt2EcgOq0+RAIFufFp9is6tqNnKahqE5kuKvrnYAzs28r+s6pXJR8Vcw==}
+
   damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
 
@@ -3720,6 +3769,10 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
+  lodash.get@4.4.2:
+    resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
+
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
@@ -4633,6 +4686,10 @@ packages:
 
   strip-literal@3.1.0:
     resolution: {integrity: sha512-8r3mkIM/2+PpjHoOtiAW8Rg3jJLHaV7xPwG+YRGrv6FP0wwk/toTpATxWYOW0BKdWwl82VT2tFYi5DlROa0Mxg==}
+
+  stripe@10.17.0:
+    resolution: {integrity: sha512-JHV2KoL+nMQRXu3m9ervCZZvi4DDCJfzHUE6CmtJxR9TmizyYfrVuhGvnsZLLnheby9Qrnf4Hq6iOEcejGwnGQ==}
+    engines: {node: ^8.1 || >=10.*}
 
   stripe@18.5.0:
     resolution: {integrity: sha512-Hp+wFiEQtCB0LlNgcFh5uVyKznpDjzyUZ+CNVEf+I3fhlYvh7rZruIg+jOwzJRCpy0ZTPMjlzm7J2/M2N6d+DA==}
@@ -6254,6 +6311,42 @@ snapshots:
       - supports-color
       - typescript
 
+  '@payloadcms/plugin-import-export@3.62.1(@payloadcms/ui@3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@faceless-ui/modal': 3.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@payloadcms/translations': 3.62.1
+      '@payloadcms/ui': 3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
+      csv-parse: 5.6.0
+      csv-stringify: 6.6.0
+      payload: 3.62.1(graphql@16.12.0)(typescript@5.7.2)
+      qs-esm: 7.0.2
+    transitivePeerDependencies:
+      - react
+      - react-dom
+
+  '@payloadcms/plugin-nested-docs@3.62.1(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))':
+    dependencies:
+      payload: 3.62.1(graphql@16.12.0)(typescript@5.7.2)
+
+  '@payloadcms/plugin-redirects@3.62.1(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))':
+    dependencies:
+      payload: 3.62.1(graphql@16.12.0)(typescript@5.7.2)
+
+  '@payloadcms/plugin-search@3.62.1(@types/react@19.0.1)(graphql@16.12.0)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)':
+    dependencies:
+      '@payloadcms/next': 3.62.1(@types/react@19.0.1)(graphql@16.12.0)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
+      '@payloadcms/ui': 3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
+      payload: 3.62.1(graphql@16.12.0)(typescript@5.7.2)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+      - graphql
+      - monaco-editor
+      - next
+      - supports-color
+      - typescript
+
   '@payloadcms/plugin-seo@3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)':
     dependencies:
       '@payloadcms/translations': 3.62.1
@@ -6265,6 +6358,23 @@ snapshots:
       - '@types/react'
       - monaco-editor
       - next
+      - supports-color
+      - typescript
+
+  '@payloadcms/plugin-stripe@3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)':
+    dependencies:
+      '@payloadcms/translations': 3.62.1
+      '@payloadcms/ui': 3.62.1(@types/react@19.0.1)(monaco-editor@0.54.0)(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.62.1(graphql@16.12.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
+      lodash.get: 4.4.2
+      payload: 3.62.1(graphql@16.12.0)(typescript@5.7.2)
+      stripe: 10.17.0
+      uuid: 10.0.0
+    transitivePeerDependencies:
+      - '@types/react'
+      - monaco-editor
+      - next
+      - react
+      - react-dom
       - supports-color
       - typescript
 
@@ -7521,6 +7631,10 @@ snapshots:
 
   csstype@3.1.3: {}
 
+  csv-parse@5.6.0: {}
+
+  csv-stringify@6.6.0: {}
+
   damerau-levenshtein@1.0.8: {}
 
   data-uri-to-buffer@4.0.1: {}
@@ -8708,6 +8822,8 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lodash.get@4.4.2: {}
+
   lodash.merge@4.6.2: {}
 
   lodash@4.17.21: {}
@@ -9837,6 +9953,11 @@ snapshots:
   strip-literal@3.1.0:
     dependencies:
       js-tokens: 9.0.1
+
+  stripe@10.17.0:
+    dependencies:
+      '@types/node': 22.5.4
+      qs: 6.14.0
 
   stripe@18.5.0(@types/node@22.5.4):
     dependencies:

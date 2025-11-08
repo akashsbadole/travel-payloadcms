@@ -1,0 +1,874 @@
+{
+  "url": "https://www.travel.com",
+  "title": "travel.com - Book Flights, Hotels, Holidays, Bus & Train Tickets",
+  "meta_description": "Discover the best deals on flights, hotels, holiday packages, bus & train tickets. Exclusive offers to make travel dreams a reality at travel!",
+  "navigation": [],
+  "hero_section": {
+    "tag": "div",
+    "classes": ["emt_header"],
+    "background_image": "",
+    "heading": "",
+    "subheading": ""
+  },
+  "search_forms": [
+    {
+      "action": "#",
+      "method": "post",
+      "classes": [],
+      "inputs": [
+        {
+          "type": "select",
+          "name": "",
+          "placeholder": "",
+          "class": ["namelist"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Service ID/Number",
+          "class": ["namebox"],
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "type": "button",
+          "text": "Continue",
+          "class": ["btn-refer", "btn-block"]
+        }
+      ]
+    },
+    {
+      "action": "",
+      "method": "GET",
+      "classes": [],
+      "inputs": [
+        {
+          "type": "hidden",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "hidden",
+          "name": "SearchType",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "hidden",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "Trip",
+          "placeholder": "",
+          "class": ["hide-round", "one_rou_click"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "Trip",
+          "placeholder": "",
+          "class": ["hide-round2", "rund"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "Trip",
+          "placeholder": "",
+          "class": ["hide-round2", "rund"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "corpsecrd",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "corpsecrd",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "corpsecrd",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["hide-txtbox", "input_city", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["hide-txtbox", "input_city", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure",
+          "class": ["input_cld"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Return",
+          "class": ["input_cld", "hide-ddate", "round-but1"],
+          "required": false
+        },
+        {
+          "type": "hidden",
+          "name": "hdn1",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "hidden",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "quantity",
+          "placeholder": "",
+          "class": ["inptno"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "quantity1",
+          "placeholder": "",
+          "class": ["inptno", "numbe_box2"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "quantity2",
+          "placeholder": "",
+          "class": ["inptno", "numbe_box2"],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClass",
+          "placeholder": "",
+          "class": ["optClass"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClass",
+          "placeholder": "",
+          "class": ["optClass"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClass",
+          "placeholder": "",
+          "class": ["optClass"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClass",
+          "placeholder": "",
+          "class": ["optClass"],
+          "required": false
+        },
+        {
+          "type": "hidden",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Traveller",
+          "class": ["cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "",
+          "class": ["srctinput", "travellerAutoFlll"],
+          "required": false
+        },
+        {
+          "type": "button",
+          "name": "",
+          "placeholder": "",
+          "class": ["srchBtnSe"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["input_city", "hide-txtbox", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["input_city", "hide-txtbox", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Choose Date",
+          "class": ["input_cld"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "quantity",
+          "placeholder": "",
+          "class": ["inptno", "numbe_box2"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "quantity1",
+          "placeholder": "",
+          "class": ["inptno", "numbe_box2"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "quantity2",
+          "placeholder": "",
+          "class": ["inptno", "numbe_box2"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClassMul",
+          "placeholder": "",
+          "class": ["optClassMul"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClassMul",
+          "placeholder": "",
+          "class": ["optClassMul"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClassMul",
+          "placeholder": "",
+          "class": ["optClassMul"],
+          "required": false
+        },
+        {
+          "type": "radio",
+          "name": "optClassMul",
+          "placeholder": "",
+          "class": ["optClassMul"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["input_city", "hide-txtbox", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Choose Date",
+          "class": ["input_cld"],
+          "required": false
+        },
+        {
+          "type": "button",
+          "name": "",
+          "placeholder": "",
+          "class": ["srchBtnmultcty"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Choose Date",
+          "class": ["input_cld"],
+          "required": false
+        },
+        {
+          "type": "button",
+          "name": "",
+          "placeholder": "",
+          "class": ["srchBtnmultcty"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Choose Date",
+          "class": ["input_cld"],
+          "required": false
+        },
+        {
+          "type": "button",
+          "name": "",
+          "placeholder": "",
+          "class": ["srchBtnmultcty"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Choose Date",
+          "class": ["input_cld"],
+          "required": false
+        },
+        {
+          "type": "button",
+          "name": "",
+          "placeholder": "",
+          "class": ["srchBtnmultcty"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Departure City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "From",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["hide-txtbox", "input_city", "mul-ti", "ac_input"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Destination City",
+          "class": ["autoFlll", "cityinput"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "To",
+          "class": ["srctinput", "autoFlll"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Choose Date",
+          "class": ["input_cld"],
+          "required": false
+        },
+        {
+          "type": "button",
+          "name": "",
+          "placeholder": "",
+          "class": ["srchBtnmultcty"],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "FF",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "FF",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "FF",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "FF",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "FF",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "FF",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Enter Promotional Code",
+          "class": ["pnrinpbx", "authtickmark1"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Enter Unique Code",
+          "class": ["pnrinpbx"],
+          "required": false
+        },
+        {
+          "type": "hidden",
+          "name": "",
+          "placeholder": "",
+          "class": [],
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "type": "button",
+          "text": "-",
+          "class": ["sub", "minus_boxADt"]
+        },
+        {
+          "type": "button",
+          "text": "+",
+          "class": ["add", "plus_box1"]
+        },
+        {
+          "type": "button",
+          "text": "-",
+          "class": ["sub", "minus_box1"]
+        },
+        {
+          "type": "button",
+          "text": "+",
+          "class": ["add", "plus_boxChd"]
+        },
+        {
+          "type": "button",
+          "text": "-",
+          "class": ["sub", "minus_box1"]
+        },
+        {
+          "type": "button",
+          "text": "+",
+          "class": ["add", "plus_box1Inf"]
+        },
+        {
+          "type": "button",
+          "text": "-",
+          "class": ["sub", "minus_boxADt"]
+        },
+        {
+          "type": "button",
+          "text": "+",
+          "class": ["add", "plus_box1"]
+        },
+        {
+          "type": "button",
+          "text": "-",
+          "class": ["sub", "minus_box1"]
+        },
+        {
+          "type": "button",
+          "text": "+",
+          "class": ["add", "plus_boxChd"]
+        },
+        {
+          "type": "button",
+          "text": "-",
+          "class": ["sub", "minus_box1"]
+        },
+        {
+          "type": "button",
+          "text": "+",
+          "class": ["add", "plus_box1Inf"]
+        }
+      ]
+    },
+    {
+      "action": "#",
+      "method": "post",
+      "classes": [],
+      "inputs": [
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Enter Promotional Code",
+          "class": ["pnrinpbx", "authtickmark1"],
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "",
+          "placeholder": "Enter Unique Code",
+          "class": ["pnrinpbx"],
+          "required": false
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "action": "",
+      "method": "GET",
+      "classes": ["subscription"],
+      "inputs": [
+        {
+          "type": "email",
+          "name": "",
+          "placeholder": "Example: test@gmail.com",
+          "class": ["add-email"],
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "type": "button",
+          "text": "SubscribeThank you for subscribing!",
+          "class": ["submit-email"]
+        }
+      ]
+    }
+  ],
+  "color_scheme": {
+    "primary_colors": [
+      "#f4faff",
+      "#fff7dd",
+      "#2093EF",
+      "#ffeebf",
+      "#fff",
+      "#000",
+      "#A1BFF8",
+      "#e2f2ff",
+      "#edf4ff"
+    ],
+    "total_colors_found": 9
+  },
+  "typography": {
+    "headings": {},
+    "body_text": {},
+    "font_sizes_found": ["12px", "12px", "12px", "20px", "12px"]
+  },
+  "layout_components": [
+    {
+      "tag": "div",
+      "classes": ["confetti-container", "showTran"],
+      "id": ""
+    },
+    {
+      "tag": "div",
+      "classes": ["container_logn"],
+      "id": ""
+    },
+    {
+      "tag": "div",
+      "classes": ["left_grid_info"],
+      "id": ""
+    },
+    {
+      "tag": "div",
+      "classes": ["fss_flex", "depcity_colm", "sechver"],
+      "id": ""
+    },
+    {
+      "tag": "div",
+      "classes": ["fss_flex", "arrcity_colm", "sechver"],
+      "id": ""
+    }
+  ],
+  "featured_sections": []
+}
